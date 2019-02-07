@@ -10,4 +10,4 @@ Te runnen met Processing 3.4:
 * [Mac OS X](http://download.processing.org/processing-3.4-macosx.zip)
 
 Known bugs:
-* Deselecting a number which was not pressed last will not remove the right number from the list.
+* No currently known bugs, please report any bug as an [issue](https://github.com/raymondvansomeren/BingoApp/issues) with the BUG tag.
