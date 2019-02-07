@@ -24,10 +24,22 @@ void appBackground() {
   } else {
     textSize(getCurrentNumberTextBlockLocation()[3] - getCurrentNumberTextBlockLocation()[1]);
   }
-  //textSize(150);  //TODO change to dynamic
   text(current.getNumber(), 
     getCurrentNumberTextBlockLocation()[0] + ((getCurrentNumberTextBlockLocation()[2] - getCurrentNumberTextBlockLocation()[0]) / 2), 
     getCurrentNumberTextBlockLocation()[1] + ((getCurrentNumberTextBlockLocation()[3] - getCurrentNumberTextBlockLocation()[1]) / 2));
+  
+  if (previousNumbers.size() > 1) {
+    if (((getCurrentNumberTextBlockLocation()[2] - getCurrentNumberTextBlockLocation()[0])) < (getCurrentNumberTextBlockLocation()[3] - getCurrentNumberTextBlockLocation()[1])) {
+      textSize((getCurrentNumberTextBlockLocation()[2] - getCurrentNumberTextBlockLocation()[0]) / 2);
+    } else {
+      textSize((getCurrentNumberTextBlockLocation()[3] - getCurrentNumberTextBlockLocation()[1]) / 2);
+    }
+    textAlign(CENTER, TOP);
+    fill(0);
+    text(previousNumbers.get(previousNumbers.size() - 2).getNumber(),
+      getCurrentNumberTextBlockLocation()[0] + ((getCurrentNumberTextBlockLocation()[2] - getCurrentNumberTextBlockLocation()[0]) / 2),
+      getCurrentNumberTextBlockLocation()[1] + ((getCurrentNumberTextBlockLocation()[3] - getCurrentNumberTextBlockLocation()[1])));
+  }
 }
 
 void drawButtons() {

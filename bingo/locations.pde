@@ -29,3 +29,15 @@ int[] getCurrentNumberTextBlockLocation() {
   
   return rtrn;
 }
+
+//int[] getLastNumberTextBlockLocation() {
+//  int[] rtrn = new int[4];
+//  int[] temp = getCurrentNumberBlockLocation();
+  
+//  rtrn[0] = 
+//  rtrn[1] = 
+//  rtrn[2] = 
+//  rtrn[3] = 
+  
+//  return rtrn;
+//}

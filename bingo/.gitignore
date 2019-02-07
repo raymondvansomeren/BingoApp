@@ -1,0 +1,13 @@
+application.linux32/*
+application.linux64/*
+application.linux-arm64/*
+application.linux-armv6hf/*
+application.windows32/*
+application.windows64/*
+
+application.linux-arm64.rar
+application.linux-armv6hf.rar
+application.linux32.rar
+application.linux64.rar
+application.windows32.rar
+application.windows64.rar
