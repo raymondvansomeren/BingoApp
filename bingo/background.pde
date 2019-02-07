@@ -25,7 +25,7 @@ void appBackground() {
     textSize(getCurrentNumberTextBlockLocation()[3] - getCurrentNumberTextBlockLocation()[1]);
   }
   //textSize(150);  //TODO change to dynamic
-  text(current.getCurrentNumber(), 
+  text(current.getNumber(), 
     getCurrentNumberTextBlockLocation()[0] + ((getCurrentNumberTextBlockLocation()[2] - getCurrentNumberTextBlockLocation()[0]) / 2), 
     getCurrentNumberTextBlockLocation()[1] + ((getCurrentNumberTextBlockLocation()[3] - getCurrentNumberTextBlockLocation()[1]) / 2));
 }

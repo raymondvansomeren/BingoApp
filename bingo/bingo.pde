@@ -5,12 +5,19 @@
  * Date: 6 Februari 2019
  */
 
-CurrentNumber current = new CurrentNumber(0);
+Number current = new Number(0);
+Number[] previousNumbers = new Number[90];
+Number numberIndex = new Number(0);
+
 Button[] buttons = new Button[90];
 ResetButton[] resetButton = new ResetButton[1];
 
 void setup() {
   fullScreen();
+  
+  for (int i = 0; i < 90; i++) {
+    previousNumbers[i] = new Number(0);
+  }
   
   int buttonsPerRow = 10;
   for (int i = 0; i < buttons.length / buttonsPerRow; i++) {
@@ -29,7 +36,7 @@ void setup() {
       } else if (x2 < 0) {
         x2 = 0;
       }
-      buttons[i*buttonsPerRow+j] = new Button(x1, y1, x2, y2, i*buttonsPerRow+j + 1, 255, #0000FF);
+      buttons[i*buttonsPerRow+j] = new Button(x1, y1, x2, y2, i*buttonsPerRow+j + 1, 255, #00FF00, #0000FF);
     }
   }
   
@@ -45,12 +52,32 @@ void draw() {
 void mousePressed() {
   for (Button b : buttons) {
     if (b.mouseOver()) {
-      current.setCurrentNumber(b.getValue());
+      b.togglePressed();
+      previousNumbers[numberIndex.getNumber()].setNumber(b.getValue());
+      if (b.getPressed()) {
+        numberIndex.add(1);
+      } else {
+        numberIndex.substract(1);
+      }
+      if (numberIndex.getNumber() <= 0) {
+        current.setNumber(0);
+      } else {
+        current.setNumber(previousNumbers[numberIndex.getNumber() - 1].getNumber());
+      }
     }
   }
-  for (ResetButton b : resetButton) {
-    if (b.mouseOver()) {
-      current.setCurrentNumber(0);
+  for (ResetButton rb : resetButton) {
+    if (rb.mouseOver()) {
+      current.setNumber(0);
+      numberIndex.setNumber(0);
+      
+      for (Number n : previousNumbers) {
+        n.setNumber(0);
+      }
+      
+      for (Button b : buttons) {
+        b.setPressed(false);
+      }
     }
   }
 }
