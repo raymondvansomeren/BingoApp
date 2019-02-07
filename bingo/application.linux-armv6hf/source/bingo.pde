@@ -6,18 +6,14 @@
  */
 
 Number current = new Number(0);
-Number[] previousNumbers = new Number[90];
-Number numberIndex = new Number(0);
+Number[] previousNumberss = new Number[90];
+ArrayList<Number> previousNumbers = new ArrayList<Number>();
 
 Button[] buttons = new Button[90];
 ResetButton[] resetButton = new ResetButton[1];
 
 void setup() {
   fullScreen();
-  
-  for (int i = 0; i < 90; i++) {
-    previousNumbers[i] = new Number(0);
-  }
   
   int buttonsPerRow = 10;
   for (int i = 0; i < buttons.length / buttonsPerRow; i++) {
@@ -53,23 +49,31 @@ void mousePressed() {
   for (Button b : buttons) {
     if (b.mouseOver()) {
       b.togglePressed();
-      previousNumbers[numberIndex.getNumber()].setNumber(b.getValue());
+      
       if (b.getPressed()) {
-        numberIndex.add(1);
+        previousNumbers.add(new Number(b.getValue()));
       } else {
-        numberIndex.substract(1);
+        for (int i = 0; i < previousNumbers.size(); i++) {
+          if (b.getValue() == previousNumbers.get(i).getNumber()) {
+            previousNumbers.remove(i);
+          }
+        }
       }
-      if (numberIndex.getNumber() <= 0) {
+      
+      if (previousNumbers.size() == 0) {
         current.setNumber(0);
       } else {
-        current.setNumber(previousNumbers[numberIndex.getNumber() - 1].getNumber());
+        current.setNumber(previousNumbers.get(previousNumbers.size() - 1).getNumber());
       }
     }
   }
   for (ResetButton rb : resetButton) {
     if (rb.mouseOver()) {
       current.setNumber(0);
-      numberIndex.setNumber(0);
+      
+      for (; previousNumbers.size() > 0; ) {
+        previousNumbers.remove(0);
+      }
       
       for (Number n : previousNumbers) {
         n.setNumber(0);
